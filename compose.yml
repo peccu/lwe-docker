@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  lwe:
+    build: build
+    container_name: lwe
+    entrypoint: sleep infinity
+    env_file:
+      # needs OPENAI_API_KEY
+      - .env
+    logging:
+      options:
+        max-size: "10k"
+    restart: always
+    stop_signal: SIGKILL
+    volumes:
+      - ./config:/root/.local/share/llm-workflow-engine
+    working_dir: /app
